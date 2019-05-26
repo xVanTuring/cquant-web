@@ -1,0 +1,32 @@
+{
+  "name": "cquant-web",
+  "version": "0.0.1",
+  "description": "cquant-web: a cquant in webs",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "serve": "simplehttpserver --mime.Application/wasm=wasm ./dist",
+    "build": "sh build.sh"
+  },
+  "keywords": [
+    "image-palette",
+    "color-quant",
+    "cquant",
+    "palette",
+    "quant",
+    "MMCQ"
+  ],
+  "author": "xVanTuring",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/xVanTuring/cquant-web"
+  },
+  "license": "MIT",
+  "files": [
+    "./dist/cquant.js",
+    "./dist/cquant.wasm"
+  ],
+  "devDependencies": {
+    "simplehttpserver": "^0.3.0"
+  }
+}

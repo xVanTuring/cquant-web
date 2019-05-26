@@ -10,7 +10,7 @@ echo "Compiling wasm bindings"
 echo "============================================="
 
 mkdir -p dist
-
+mkdir -p build
 cd build
 emcmake cmake ..
 make
