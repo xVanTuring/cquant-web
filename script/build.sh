@@ -14,8 +14,6 @@ mkdir -p build
 cd build
 emcmake cmake ..
 make
-cp cquant.{js,wasm} ../dist
-cp ../assets/* ../dist
 echo "============================================="
 echo "Compiling wasm bindings done"
 echo "============================================="

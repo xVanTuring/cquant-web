@@ -1,0 +1,16 @@
+.vscode
+assets
+build
+color-quant
+.git
+lib
+node_modules
+script
+src
+
+dist/0.jpg
+dist/index.html
+dist/test.js
+
+CMakeLists.txt
+webpack.config.js

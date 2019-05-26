@@ -32,62 +32,6 @@
     <div class="block-container"></div>
   </div>
 </body>
-<script type="module">
-  import wasmModule from './cquant.js'
-  let instance;
-  function cquant(locateFile = "./cquant.wasm") {
-    return new Promise((res, rej) => {
-      instance = wasmModule({
-        onRuntimeInitialized() {
-          res()
-        },
-
-        locateFile() {
-          return locateFile
-        }
-      })
-    })
-  }
-  cquant().then(() => {
-    let img = new Image();
-    img.src = "./0.jpg"
-    img.onload = function () {
-      let canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      canvas.getContext('2d').drawImage(img, 0, 0)
-      let pixData = canvas.getContext('2d').getImageData(0, 0, img.width, img.height).data
-      let start = Date.now()
-      var ptr = instance._malloc(img.width * img.height * 4)
-      var heapBytes = new Uint8Array(instance.HEAPU8.buffer, ptr, img.width * img.height * 4)
-      heapBytes.set(pixData)
-      // todo string memery management
-      let result = instance.cquant(heapBytes.byteOffset, img.width * img.height)
-      instance._free(heapBytes.byteOffset)
-      console.log(Date.now() - start)
-      let colorArray = []
-      let container = document.querySelector('.block-container')
-      for (const item of result.split('|')) {
-        if (item === "")
-          break
-        let RGBC = item.split(' ')
-        let box = document.createElement('div')
-        box.className = "box"
-        box.style.backgroundColor = `rgb(${RGBC[0]},${RGBC[1]},${RGBC[2]})`
-        container.appendChild(box)
-        colorArray.push({
-          red: RGBC[0],
-          green: RGBC[1],
-          blue: RGBC[2],
-          count: RGBC[3]
-        })
-      }
-      console.log(colorArray)
-
-    }
-  })
-
-
-</script>
+<script src="./test.js"></script>
 
 </html>

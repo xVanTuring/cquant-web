@@ -5,13 +5,13 @@
 #include <sstream>
 #include <string>
 using namespace emscripten;
-std::string cquant(size_t ptr, int pixCount) {
+std::string cquant(size_t ptr, int pixCount, int maxColor) {
   unsigned char *buf = (unsigned char *)ptr;
   std::shared_ptr<PIX> pix = std::make_shared<PIX>();
   pix->depth = 4;
   pix->n = pixCount;
   pix->pixs = (RGBA_Quad *)buf;
-  auto cmap = pix_median_cut_quant(pix, 5, 5, 0);
+  auto cmap = pix_median_cut_quant(pix, maxColor, 5, 0);
   std::ostringstream stringStream;
   for (size_t i = 0; i < cmap->array->size(); i++) {
     stringStream << (int)cmap->array->at(i)->red << " "
