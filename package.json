@@ -1,6 +1,6 @@
 {
   "name": "cquant-web",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "cquant-web: a cquant in webs",
   "main": "./dist/index.js",
   "scripts": {
