@@ -2,7 +2,8 @@
 ## Preview
 [Online Example](https://xvanturing.github.io/cquant-web-test/)
 
-![Preview](https://s2.ax1x.com/2019/05/27/VV7Yge.png)
+<img src="https://s2.ax1x.com/2019/05/27/VV7Yge.png" width="300px"/>
+
 ## Usage
 ### Install
 ``` bash
