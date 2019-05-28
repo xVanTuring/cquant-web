@@ -17,29 +17,45 @@ cQuant.palette(image, maxColor).then((result) => {
 * image: could be a url to an image or a HTML img element
 * maxColor: maxColor you want
 * result: the result, an array of `{red,blue,green,count}`
+### Vanilla js
+[Vanilla Demo](https://xvanturing.github.io/cquant-web-test/vanilla.html)
+#### Import
+``` html
+<script src="https://rawgit.com/xVanTuring/cquant-web/master/dist/index.js"></script>
+```
+#### Usage
+``` html
+<script>
+    // pass path of the WASM file, and enable log
+    let cQuant = new CQuant.default("https://rawgit.com/xVanTuring/cquant-web/master/dist/cquant.wasm", true)  
+    cQuant.palette("https://picsum.photos/1920/1080", 10).then((result) => {
+        console.log(result)
+    })
+</script>
+```
 ### Config for webpack
 #### Webpack
 add rule for WASM file
 > make sure you have installed the file-loader already
 ``` js
-    module: {
-        rules: [
-            {
-                test: /\.wasm$/,
-                type: "javascript/auto",
-                loader: "file-loader",
-                options:{
-                    name:'[name].[ext]' // if you want keep the WASM name
-                }
+module: {
+    rules: [
+        {
+            test: /\.wasm$/,
+            type: "javascript/auto",
+            loader: "file-loader",
+            options:{
+                name:'[name].[ext]' // if you want keep the WASM name
             }
-        ]
-    },
-    resolve: {
-        alias: {
-            // add alias for WASM importing
-            cQuantWASM: path.join(__dirname, "./node_modules/cquant-web/dist/cquant.wasm")
         }
+    ]
+},
+resolve: {
+    alias: {
+        // add alias for WASM importing
+        cQuantWASM: path.join(__dirname, "./node_modules/cquant-web/dist/cquant.wasm")
     }
+}
 ```
 #### Import & Usage
 ``` js
@@ -58,30 +74,7 @@ cquant.palette("./0.jpg", 10).then((result) => {
     }
 })
 ```
-### Vanilla js
-#### Download
-You will need to download the files in dist: `cquant.wasm` and `index.js`(rename it if you need), or import from github directly.
-``` html
-<script src="./index.js"></script>
-```
-OR
-``` html
-<head>
-<script src="https://rawgit.com/xVanTuring/cquant-web/master/dist/index.js"></script>
-</head>
-```
-#### Usage
-``` html
-<script>
-    var cQuant = new CQuant.default("./cquant.wasm", true) // pass path of the WASM file, and enable log
-    // OR
-    // var cQuant = new CQuant.default("https://rawgit.com/xVanTuring/cquant-web/master/dist/cquant.wasm", true)  
 
-    cQuant.palette("https://picsum.photos/1920/1080", 10).then((result) => {
-        console.log(result)
-    })
-</script>
-```
 ## Limitation
 The `cQuant.palette` isnot fully async function  actually. \
 It will load the WASM file async-ly,but the real palette computation will block the thread. \
