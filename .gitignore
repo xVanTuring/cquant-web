@@ -1,4 +1,6 @@
 build
-dist
+dist/*.jpg
+dist/index.html
+dist/test.js
 .vscode
 node_modules
