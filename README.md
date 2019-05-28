@@ -9,7 +9,16 @@
 ``` bash
 npm i cquant-web
 ```
+### API
+``` js
+cQuant.palette(image, maxColor).then((result) => {
+})
+```
+* image: could be a url to an image or a HTML img element
+* maxColor: maxColor you want
+* result: the result, an array of `{red,blue,green,count}`
 ### Config for webpack
+#### Webpack
 add rule for WASM file
 > make sure you have installed the file-loader already
 ``` js
@@ -67,6 +76,7 @@ OR
     var cQuant = new CQuant.default("./cquant.wasm", true) // pass path of the WASM file, and enable log
     // OR
     // var cQuant = new CQuant.default("https://rawgit.com/xVanTuring/cquant-web/master/dist/cquant.wasm", true)  
+
     cQuant.palette("https://picsum.photos/1920/1080", 10).then((result) => {
         console.log(result)
     })
