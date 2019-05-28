@@ -50,16 +50,24 @@ cquant.palette("./0.jpg", 10).then((result) => {
 })
 ```
 ### Vanilla js
-1. First, you will need to download the files in dist: `cquant.wasm` and `index.js`(rename it if you need)
-2. import
+#### Download
+You will need to download the files in dist: `cquant.wasm` and `index.js`(rename it if you need), or import from github directly.
 ``` html
 <script src="./index.js"></script>
 ```
-3. use
+OR
+``` html
+<head>
+<script src="https://rawgit.com/xVanTuring/cquant-web/master/dist/index.js"></script>
+</head>
+```
+#### Usage
 ``` html
 <script>
     var cQuant = new CQuant.default("./cquant.wasm", true) // pass path of the WASM file, and enable log
-    cQuant.palette("./503-1920x1080.jpg", 10).then((result) => {
+    // OR
+    // var cQuant = new CQuant.default("https://rawgit.com/xVanTuring/cquant-web/master/dist/cquant.wasm", true)  
+    cQuant.palette("https://picsum.photos/1920/1080", 10).then((result) => {
         console.log(result)
     })
 </script>
@@ -67,10 +75,7 @@ cquant.palette("./0.jpg", 10).then((result) => {
 ## Limitation
 The `cQuant.palette` isnot fully async function  actually. \
 It will load the WASM file async-ly,but the real palette computation will block the thread. \
-Of course, I'm working on it, web worker seems to be a good choice. \
-And also loading external image will cause cross-orgin kind error, which I'm
-not familiar with currently, I will fix it.
-
+Of course, I'm working on it, web worker seems to be a good choice. \s
 
 ## More info see 
 [cquant-web-test](https://github.com/xVanTuring/cquant-web-test)
